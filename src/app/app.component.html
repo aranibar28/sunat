@@ -1,5 +1,3 @@
-
-
 <div class="container mt-5">
   
   <div class="row mb-4 d-flex justify-content-between">
@@ -8,93 +6,93 @@
     </div>
   </div>
 
-  <form (ngSubmit)="register()" #myForm="ngForm" autocomplete="off" class="row">
-    <div class="col-md-6">
-      <div class="row mb-2">
-        <div class="col-md-6">
-          <label class="form-label">Tipo</label>
-          <select [(ngModel)]="form.type" name="type" required class="form-control">
-            <option value="" selected disabled>Seleccionar</option>
-            <option value="dni">DNI</option>
-            <option value="ruc">RUC</option>
-          </select>
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">Numero de Documento</label>
-          <input [(ngModel)]="form.number" name="number" required type="text" class="form-control">
+  <form (ngSubmit)="register()" #myForm="ngForm" autocomplete="off">
+    <div class="row">
+      <div class="col-md-3">
+        <label class="form-label">Tipo <span class="text-danger">*</span></label>
+        <select [(ngModel)]="form.type" name="type" required class="form-control">
+          <option value="" selected disabled>Seleccionar</option>
+          <option value="dni">DNI</option>
+          <option value="ruc">RUC</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Numero de Documento <span class="text-danger">*</span></label>
+        <input [(ngModel)]="form.number" name="number" required type="text" class="form-control" placeholder="Ingrese DNI o RUC">
+      </div>
+      <div class="col-md-6 d-grid mt-4 mt-md-0">
+        <label class="form-label d-none d-md-block">&nbsp;</label>
+        <button *ngIf="btn_load" type="button" disabled class="btn btn-info d-block">Buscando...</button>
+        <button *ngIf="!btn_load" (click)="get_users()" type="button" class="btn btn-info d-block">Buscar Sunat</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-12">
+              <label class="form-label">Nombres</label>
+              <input [(ngModel)]="form.nombres" name="nombres" disabled type="text" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label class="form-label">Apelllido Paterno</label>
+              <input [(ngModel)]="form.apellidoPaterno" name="apellidoPaterno" disabled type="text" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Apellido Materno</label>
+              <input [(ngModel)]="form.apellidoMaterno" name="apellidoMaterno" disabled type="text" class="form-control">
+            </div>
+          </div>
         </div>
       </div>
-      <div class="row mb-2">
-        <div class="col-md-12">
-          <label class="form-label">Nombres</label>
-          <input [(ngModel)]="form.nombres" name="nombres" disabled type="text" class="form-control">
-        </div>
-      </div>
-      <div class="row mb-2">
-        <div class="col-md-6">
-          <label class="form-label">Apelllido Paterno</label>
-          <input [(ngModel)]="form.apellidoPaterno" name="apellidoPaterno" disabled type="text" class="form-control">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">Apellido Materno</label>
-          <input [(ngModel)]="form.apellidoMaterno" name="apellidoMaterno" disabled type="text" class="form-control">
-        </div>
-      </div>
-      <div class="row mb-2">
-        <div class="col-md-12">
-          <label class="form-label">Dirección</label>
-          <input [(ngModel)]="form.direccion" name="direccion" type="text" class="form-control">
-        </div>
-      </div>
-      <div class="row mb-2">
-        <div class="col-md-12">
-          <label class="form-label">Email</label>
-          <input [(ngModel)]="form.email" name="email" type="text" class="form-control">
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-12">
+              <label class="form-label">Mostrar nombre como Alias</label>
+              <input [(ngModel)]="form.alias" name="alias" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <label class="form-label">Distrito</label>
+              <input [(ngModel)]="form.distrito" name="distrito" type="text" class="form-control">
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="col-md-6">
-      <div class="row mb-2">
-        <div class="col-md-12 d-grid">
-          <label class="form-label">&nbsp;</label>
-          <button (click)="get_users()" type="button" class="btn btn-primary d-block">Buscar Sunat</button>
-        </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label class="form-label">Dirección</label>
+        <input [(ngModel)]="form.direccion" name="direccion" type="text" class="form-control">
       </div>
-      <div class="row mb-2">
-        <div class="col-md-12">
-          <label class="form-label">Mostrar nombre como Alias</label>
-          <input [(ngModel)]="form.alias" name="alias" type="text" class="form-control">
-        </div>
+      <div class="col-md-6">
+        <label class="form-label">Email</label>
+        <input [(ngModel)]="form.email" name="email" type="text" class="form-control">
       </div>
-      <div class="row mb-2">
-        <div class="col-md-12">
-          <label class="form-label">Ubigeo Distrito</label>
-          <input [(ngModel)]="form.ubigeo" name="ubigeo" type="text" class="form-control">
-        </div>
+      <div class="col-md-6">
+        <label class="form-label">Telefono Movil</label>
+        <input [(ngModel)]="form.celular" name="celular" type="email" class="form-control">
       </div>
-      <div class="row mb-2">
-        <div class="col-md-6">
-          <label class="form-label">Telefono Movil</label>
-          <input [(ngModel)]="form.celular" name="celular" type="email" class="form-control">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">Telefono Fijo</label>
-          <input [(ngModel)]="form.telefono" name="telefono" type="text" class="form-control">
-        </div>
+      <div class="col-md-6">
+        <label class="form-label">Telefono Fijo</label>
+        <input [(ngModel)]="form.telefono" name="telefono" type="text" class="form-control">
       </div>
     </div>
-    <div>
+    <div class="my-4">
       <button (click)="clearAPI()" type="button" class="btn btn-secondary">Limpiar Búsqueda</button>
       <button (click)="clearFORM()" type="button" class="btn btn-secondary mx-1">Limpiar Todo</button>
       <button [disabled]="myForm.invalid" type="submit" class="btn btn-primary">Guardar</button>
     </div>
   </form>
-  <br>
+
   <div class="row">
     <div class="col-md-6">
       <span>Value</span>
-      <pre>{{ myForm.value | json }}</pre>
+      <pre>{{ form | json }}</pre>
     </div>
     <div class="col-md-6">
       <span>Data API</span>
@@ -102,4 +100,3 @@
     </div>
   </div>
 </div>
-
